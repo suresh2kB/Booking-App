@@ -27,6 +27,9 @@ mongoose.connection.on("connected", () => {
 });
 
 // Middlerwares
+// This is used because we cannot send direct JSON to express server.
+app.use(express.json());
+
 app.use("/api/auth", authRoute);
 app.use("/api/hotels", hotelsRoute);
 app.use("/api/rooms", roomsRoute);
