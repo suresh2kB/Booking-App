@@ -5,6 +5,7 @@ import authRoute from "./routes/auth.js";
 import usersRoute from "./routes/users.js";
 import hotelsRoute from "./routes/hotels.js";
 import roomsRoute from "./routes/rooms.js";
+import cookieParser from "cookie-parser";
 const app = express();
 dotenv.config(); // Using this we will access out data in .env file.
 
@@ -29,6 +30,7 @@ mongoose.connection.on("connected", () => {
 // Middlerwares
 // This is used because we cannot send direct JSON to express server.
 app.use(express.json());
+app.use(cookieParser());
 
 app.use("/api/auth", authRoute);
 app.use("/api/hotels", hotelsRoute);
