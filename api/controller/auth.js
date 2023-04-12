@@ -4,9 +4,9 @@ import { createError } from "../utils/error.js";
 import jwt from "jsonwebtoken";
 
 export const register = async (req, res, next) => {
-  const salt = bcryptjs.genSaltSync(10);
-  const hash = bcryptjs.hashSync(req.body.password, salt);
   try {
+    const salt = bcryptjs.genSaltSync(10);
+    const hash = bcryptjs.hashSync(req.body.password, salt);
     const newUser = new User({
       username: req.body.username,
       email: req.body.email,
@@ -41,7 +41,7 @@ export const login = async (req, res, next) => {
         httpOnly: true,
       })
       .status(200)
-      .json({ ...otherDetails });
+      .json({ details: { ...otherDetails }, isAdmin });
   } catch (err) {
     next(err);
   }
